@@ -27,9 +27,9 @@ class Human
         $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
         $enemy = $enemies[$enemyIndex];
 
-        echo "[" . $this->getName() . "] の攻撃！\n";
-        echo "【" . $enemy->getName() . "】に" . $this->attackPoint
-            . $enemy->tookDamage($this->attackPoint);
+        echo "「" . $this->getName() . "」の攻撃！\n";
+        echo "「" . $enemy->getName() . "」に" . $this->attackPoint
+            . $enemy->tookDamage($this->attackPoint) . "のダメージ\n\n";
     }
 
     public function tookDamage($damage)
