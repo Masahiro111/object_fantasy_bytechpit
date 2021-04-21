@@ -4,9 +4,8 @@
 
 require_once('./classes/Human.php');
 require_once('./classes/Enemy.php');
-require_once('./classes/Brave.php');
 
-$tiida = new Brave();
+$tiida = new Human();
 $goblin = new Enemy();
 
 $tiida->name = "ティーダ";
