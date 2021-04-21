@@ -11,7 +11,6 @@
 // require_once('./classes/WhiteMage.php');
 
 require_once('./lib/Loader.php');
-require_once('./lib/Utillity.php');
 
 // オートロード
 $loader = new Loader();
@@ -34,6 +33,23 @@ $turn = 1;
 $isFinishFlg = false;
 
 $messageObj = new Message;
+
+function isFinish($objects)
+{
+    $deathCnt = 0; // HPが0以下の仲間の数
+    foreach ($objects as $object) {
+        // 1人でもHPが０を超えていたらfalseを返す
+        if ($object->getHitPoint() > 0) {
+            return false;
+        }
+        $deathCnt++;
+    }
+
+    //仲間の買うzが死亡数（HPが0以下の数）と同じであればtrueを返す
+    if ($deathCnt === count($objects)) {
+        return true;
+    }
+}
 
 
 while (!$isFinishFlg) {
