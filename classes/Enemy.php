@@ -41,7 +41,7 @@ class Enemy
 
         echo "[" . $this->getName() . "] の攻撃！\n";
         echo "【" . $human->getName() . "】に" . $this->attackPoint
-            . $human->tookDamage($this->attackPoint) . "のダメージ\n";
+            . $human->tookDamage($this->attackPoint);
     }
 
     public function tookDamage($damage)
