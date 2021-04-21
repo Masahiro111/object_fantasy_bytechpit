@@ -29,8 +29,8 @@ class Enemy
 
     public function doAttack($human)
     {
-        echo "[" . $this->getName() . "] の攻撃！\n";
-        echo "【" . $human->getName() . "】に" . $this->attackPoint
+        echo "[" . $this->name . "] の攻撃！\n";
+        echo "【" . $human->name . "】に" . $this->attackPoint
             . $human->tookDamage($this->attackPoint);
     }
 
