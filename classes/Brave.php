@@ -14,12 +14,14 @@ class Brave extends Human
 
     public function doAttack($enemies)
     {
-        // 自分のHPが0以上か、敵のHPが0以上かなどをチェックするメソッドを用意。
-        if (!$this->isEnableAttack($enemies)) {
+
+        // チェック１：自身のHPが０かどうか
+        if ($this->hitPoint <= 0) {
             return false;
         }
-        // ターゲットの決定
-        $enemy = $this->selectTarget($enemies);
+
+        $enemyIndex = rand(0, count($enemies) - 1);
+        $enemy = $enemies[$enemyIndex];
 
         if (rand(1, 3) === 1) {
             echo "「" . $this->getName() . "」のスキルが発動した！\n";

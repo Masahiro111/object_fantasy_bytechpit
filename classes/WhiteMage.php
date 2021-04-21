@@ -5,35 +5,33 @@ class WhiteMage extends Human
 
     const MAX_HITPOINT = 80;
     private $hitPoint = 80;
-    private $attackPoint = 10;
+    private $attackPoint = 80;
     private $intelligence = 30; // 魔法攻撃力
 
 
     public function __construct($name)
     {
-        parent::__construct($name, $this->hitPoint, $this->attackPoint, $this->intelligence);
+        parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
 
-    public function doAttackWhiteMage($enemies, $members)
+    public function doAttackWhiteMage($enemies, $humans)
     {
-        // 自分のHPが0以上か、敵のHPが0以上かなどをチェックするメソッドを用意。
-        if (!$this->isEnableAttack($enemies)) {
+
+        // チェック１：自身のHPが0かどうか
+        if ($this->hitPoint <= 0) {
             return false;
         }
 
-        if (rand(1, 2) === 1) {
-            // ターゲットの決定
-            $member = $this->selectTarget($members);
+        $humanIndex = rand(0, count($humans) - 1); // 添字は0から始まるので、-1する
+        $human = $humans[$humanIndex];
 
+        if (rand(1, 2) === 1) {
             echo "「" . $this->getName() . "」のスキルが発動した！\n";
             echo "「ケアル！」\n";
-            echo $member->getName() . "のＨＰを" . $this->intelligence * 1.5 . " 回復！\n\n";
-            $member->recoveryDamage($this->intelligence * 1.5, $member);
+            echo $human->getName() . "のＨＰを" . $this->intelligence * 1.5 . " 回復！\n\n";
+            $human->recoveryDamage($this->intelligence * 1.5, $human);
         } else {
-            // ターゲットの決定
-            $enemy = $this->selectTarget($enemies);
             parent::doAttack($enemies);
         }
-        return true;
     }
 }
