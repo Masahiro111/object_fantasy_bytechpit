@@ -3,29 +3,9 @@
 class Enemy
 {
     const MAX_HITPOINT = 50;
-    private $name;
-    private $hitPoint = 50;
-    private $attackPoint = 10;
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function getHitPoint()
-    {
-        return $this->hitPoint;
-    }
-
-    public function getAttackPoint()
-    {
-        return $this->attackPoint;
-    }
+    public $name;
+    public $hitPoint = 50;
+    public $attackPoint = 10;
 
     public function doAttack($human)
     {
