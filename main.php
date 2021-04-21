@@ -18,17 +18,19 @@ $loader = new Loader();
 
 // classesフォルダのナカミをロード対象ディレクトリとして登録
 $loader->regDirectory(__DIR__ . '/classes');
+$loader->regDirectory(__DIR__ . '/classes/constants');
 $loader->register();
 
 $members = array();
-$members[] = new Brave('ティーダ');
-$members[] = new WhiteMage('ユウナ');
-$members[] = new BlackMage('ルールー');
+$members[] = new Brave(CharacterName::TIIDA);
+$members[] = new WhiteMage(CharacterName::YUNA);
+$members[] = new BlackMage(CharacterName::RULU);
+
 
 $enemies = array();
-$enemies[] = new Enemy('ゴブリン', 20);
-$enemies[] = new Enemy('ボム', 25);
-$enemies[] = new Enemy('モルボル', 30);
+$enemies[] = new Enemy(EnemyName::GOBLINS, 20);
+$enemies[] = new Enemy(EnemyName::BOMB, 25);
+$enemies[] = new Enemy(EnemyName::MORBOL, 40);
 
 $turn = 1;
 $isFinishFlg = false;
