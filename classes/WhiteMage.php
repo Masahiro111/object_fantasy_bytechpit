@@ -28,7 +28,7 @@ class WhiteMage extends Human
         if (rand(1, 2) === 1) {
             echo "「" . $this->getName() . "」のスキルが発動した！\n";
             echo "「ケアル！」\n";
-            echo $human->getName() . "のＨＰを" . $this->intelligence * 1.5 . " 回復！\n\n";
+            echo $human->getName() . "のＨＰを" . $this->intelligence * 1.5 . " 回復！\n";
             $human->recoveryDamage($this->intelligence * 1.5, $human);
         } else {
             parent::doAttack($enemies);

@@ -24,26 +24,8 @@ $isFinishFlg = false;
 
 $messageObj = new Message;
 
-function isFinish($objects)
-{
-    $deathCnt = 0; // HPが0以下の仲間の数
-    foreach ($objects as $object) {
-        // 1人でもHPが０を超えていたらfalseを返す
-        if ($object->getHitPoint() > 0) {
-            return false;
-        }
-        $deathCnt++;
-    }
-
-    //仲間の買うzが死亡数（HPが0以下の数）と同じであればtrueを返す
-    if ($deathCnt === count($objects)) {
-        return true;
-    }
-}
-
-
 while (!$isFinishFlg) {
-    echo "■ $turn ターン目 ------------------------------\n\n";
+    echo "*** $turn ターン目 ***\n\n";
 
     // 仲間の表示
     $messageObj->displayStatusMessage($members, $enemies);
@@ -56,19 +38,6 @@ while (!$isFinishFlg) {
 
     // 敵の攻撃
     $messageObj->displayAttackMessage($enemies, $members);
-
-    // 戦闘終了条件のチェック　仲間全員のHPが０　または、敵全員のHPが０
-    $isFinishFlg = isFinish($members);
-    if ($isFinishFlg) {
-        $message = "GAME OVER... \n\n";
-        break;
-    }
-
-    $isFinishFlg = isFinish($enemies);
-    if ($isFinishFlg) {
-        $message = "♪♪♪ファンファーレ♪♪♪\n\n";
-        break;
-    }
 
     // 現在のHPの表示
     // foreach ($members as $member) {
@@ -97,35 +66,35 @@ while (!$isFinishFlg) {
     // }
     // echo "\n\n";
 
-    // // 仲間の全滅チェック
-    // $deathCnt = 0; // HPが0以下の仲間の数
-    // foreach ($members as $member) {
-    //     if ($member->getHitPoint() > 0) {
-    //         $isFinishFlg = false;
-    //         break;
-    //     }
-    //     $deathCnt++;
-    // }
-    // if ($deathCnt === count($members)) {
-    //     $isFinishFlg = true;
-    //     echo "GAME OVER ....\n\n";
-    //     break;
-    // }
+    // 仲間の全滅チェック
+    $deathCnt = 0; // HPが0以下の仲間の数
+    foreach ($members as $member) {
+        if ($member->getHitPoint() > 0) {
+            $isFinishFlg = false;
+            break;
+        }
+        $deathCnt++;
+    }
+    if ($deathCnt === count($members)) {
+        $isFinishFlg = true;
+        echo "GAME OVER ....\n\n";
+        break;
+    }
 
-    // // 敵の全滅チェック
-    // $deathCnt = 0; // HPが0以下の敵の数
-    // foreach ($enemies as $enemy) {
-    //     if ($enemy->getHitPoint() > 0) {
-    //         $isFinishFlg = false;
-    //         break;
-    //     }
-    //     $deathCnt++;
-    // }
-    // if ($deathCnt === count($enemies)) {
-    //     $isFinishFlg = true;
-    //     echo "♪♪♪ファンファーレ♪♪♪\n\n";
-    //     break;
-    // }
+    // 敵の全滅チェック
+    $deathCnt = 0; // HPが0以下の敵の数
+    foreach ($enemies as $enemy) {
+        if ($enemy->getHitPoint() > 0) {
+            $isFinishFlg = false;
+            break;
+        }
+        $deathCnt++;
+    }
+    if ($deathCnt === count($enemies)) {
+        $isFinishFlg = true;
+        echo "♪♪♪ファンファーレ♪♪♪\n\n";
+        break;
+    }
 
     $turn++;
 }
