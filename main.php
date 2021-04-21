@@ -41,18 +41,22 @@ while (!$isFinishFlg) {
     echo "\n";
 
     foreach ($members as $member) {
+        $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
+        $enemy = $enemies[$enemyIndex];
         // 白魔道士の場合、味方のオブジェクトも渡す
         if (get_class($member) == "WhiteMage") {
-            $member->doAttackWhiteMage($enemies, $members);
+            $member->doAttackWhiteMage($enemy, $member);
         } else {
-            $member->doAttack($enemies);
+            $member->doAttack($enemy);
         }
         echo "\n";
     }
     echo "\n\n";
 
     foreach ($enemies as $enemy) {
-        $enemy->doAttack($members);
+        $memberIndex = rand(0, count($members) - 1); // 添字は0から始まるので、-1する
+        $member = $members[$memberIndex];
+        $enemy->doAttack($member);
         echo "\n";
     }
     echo "\n\n";

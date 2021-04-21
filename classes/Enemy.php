@@ -28,17 +28,8 @@ class Enemy
         return $this->attackPoint;
     }
 
-    public function doAttack($humans)
+    public function doAttack($human)
     {
-
-        // チェック１：自身のHPが0かどうか
-        if ($this->hitPoint <= 0) {
-            return false;
-        }
-
-        $humanIndex = rand(0, count($humans) - 1); // 添字は0から始まるので、-1する
-        $human = $humans[$humanIndex];
-
         echo "[" . $this->getName() . "] の攻撃！\n";
         echo "【" . $human->getName() . "】に" . $this->attackPoint
             . $human->tookDamage($this->attackPoint);
