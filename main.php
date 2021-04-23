@@ -39,13 +39,13 @@ while (!$isFinishFlg) {
     echo "\n";
 
     foreach ($members as $member) {
-        $enemyIndex = rand(0, count($enemies) - 1);
-        $enemy = $enemies[$enemyIndex];
+        // $enemyIndex = rand(0, count($enemies) - 1);
+        // $enemy = $enemies[$enemyIndex];
 
         if (get_class($member) == "WhiteMage") {
-            $member->doAttackWhiteMage($enemy, $member);
+            $member->doAttackWhiteMage($enemies, $members);
         } else {
-            $member->doAttack($enemy);
+            $member->doAttack($enemies);
         }
         echo "\n";
     }
@@ -62,9 +62,9 @@ while (!$isFinishFlg) {
     // $goblin->doAttack($tiida);
 
     foreach ($enemies as $enemy) {
-        $memberIndex = rand(0, count($members) - 1);
-        $member = $members[$memberIndex];
-        $enemy->doAttack($member);
+        // $memberIndex = rand(0, count($members) - 1);
+        // $member = $members[$memberIndex];
+        $enemy->doAttack($members);
     }
     echo "\n";
 
