@@ -1,6 +1,6 @@
 <?php
 
-
+require_once('./classes/Lives.php');
 require_once('./classes/Human.php');
 require_once('./classes/Enemy.php');
 require_once('./classes/Brave.php');
@@ -72,7 +72,6 @@ while (!$isFinishFlg) {
         $message = "♪♪♪ファンファーレ♪♪♪\n\n";
         break;
     }
-
 
     $turn++; // ここを追加
 }
